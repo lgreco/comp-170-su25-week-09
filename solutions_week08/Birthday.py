@@ -32,6 +32,10 @@ class Birthday:
             self.__day = day
     # end set_day
 
+    def set_month(self, month):     ########################
+        if 0 < month < 13:          # Solution for Week 08 #
+            self.month = month      ########################
+
     # Accessor for __month
     def get_month(self):
         return self.__month
@@ -39,15 +43,6 @@ class Birthday:
     # Accessor for __day
     def get_day(self):
         return self.__day
-
-    # Compute days to birthday
-    def days_until(self):
-        # obtain today's date
-        # extract month and day
-        # subtract from birthday
-        # return # of days
-        today = datetime.today()
-        # COMPLETE THIS FOR YOUR ASSIGNMENT
         
     def day_in_year(self, month, day):
         """calculates the day number within the year corresponding to a given 
@@ -61,8 +56,33 @@ class Birthday:
         """String representation for the object"""
         return f"[ {self.get_month()}/{self.get_day()} ]"
     
+    def days_until(self):
+        """
+        SOLUTION TO WEEK 08
+        """
+        # month lengths
+        length = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        # obtain today's date
+        today = datetime.today()
+        # days into today
+        dt = 0                              # THIS CODE REPEATS BELOW 
+        for month in range(today.month-1):  # SO WE SHOULD CONSIDER
+            dt += length[month-1]           # MOVING IT INTO ITS OWN
+        dt += today.day                     # METHOD TO AVOID REPEATS
+        # days into birthday
+        db = 0
+        for month in range(self.__month-1):
+            db += length[month-1]
+        db += self.__day
+        until = db-dt
+        if dt > db:
+            until = 365 +(db-dt)
+        return until
+    
 
-demo = Birthday(6,29)
+# QUICK TEST
+demo = Birthday(7,30)
 
 print(demo.day_in_year(6,29)) # d_b
 print(demo.day_in_year(4,29)) # d_t
+print(demo.days_until())

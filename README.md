@@ -11,68 +11,47 @@ There is no final exam for the course. There will be a final assignemnt that wil
 
 ## Code
 
-We'll focus our work on classes `Person` and `Birthday` as we'll use them extensively in the course's project.
+We'll focus our work on recursion, a programming technique where a method calls itself except when it reaches a trivial case known as the base case. The file `week09.py` contains two examples of recursive code.
 
-### Write method `Person.say_birthday(self)`
 
-Write a method in class `Person` with header
+### Sum of digits
+Write a *recursive* method `sum_of_digits` that accepts an integer number and returns the sum of its digits. For example, `sum_of_digits(4444)` should return `16`; `sum_of_digits(1234)` should return `10`, and so on. For your conveniene, an *iterative* version of the method is provided in `week09.py`
+
+### Count occurrences
+Write a *recursive* function `count_occurrences` that returns how many times a `target` value appears in a list. For example:
 ```python
-def say_birthday(self):
+count_occurrences([1, 2, 3, 1, 4, 1], 1)  # returns 3
 ```
-that returns a conversational string with someone's birthday. For example, if the birthday is on 6/29, the method should return the string "29th of June". Or, if someone's birthday is on 1/1, the conversational string should be "1st of January", etc.
+ For your conveniene, an *iterative* version of the method is provided in `week09.py`
 
+### Convert `week09.factorial` to iterative method
+Write a method `factorial_iterative(n)` that computes $n!$ iteratively.
 
-### Redefine the `<` operator for two `Person` objects
-
-Redefine the `<` operator with the *special function*
-```python
-def __lt__(self, other):
-```
-so that the invoking object (`self`) can compare itself to the referenced object (`other`) and return `true` if `self.first_name` is alphabetically less than `other.first_name`.
-
-
-### Write a mutator for `Birthday.month`
-
-Write a method with header
-```python
-def set_month(self, month):
-```
-that changes the object's month only if the passed argument is valid.
-
-
-### Complete method `Birthday.days_until(self)`
-
-The method should return the number of days between the current day and the next occurence of the birthday object. The method to compute this, as discussed in class, is to compute the number of days in the year for each of the two dates (today and the birthday). We completed method `Person.day_in_year(self, month, day)` to compute exactly that. For example
-```python
-day_in_year(2,15)
-```
-should return 46, because February 15 is the 46th day in the year. 
-
-If $d_b$ is the day of the year for the target birthday and $d_t$ is the day of the year for today, the number of days until the target birthday is $d_b-d_t$ if $d_b>d_t$. Otherwise try $365+(d_b-d_t)$. Test the code with your birthday and verify that it returns the correct number of days until your next birthday party!
+### Convert `week09.fibonacci` to iterative method
+Write a method `fibonacci_iterative(n)` that computes $F(n)=F(n-1)+F(n-2)$ iteratively.
 
 
 ## Code requirements
 
 * Methods that return a value should have one and only one `return` statement. Multiple `return` statements are not allowed.
-* Methods with `print` statements should not have a `return` statement.
 * The following commands should **not** be used: `import`, `break`, `continue`.
 
 
 ## Reflect
 
-Review the posted solutions from the previous assignment: [ales](./solutions_week07/SuperAles.py) and [vehicles](./solutions_week07/SuperVehicles.py). Compare the posted solutions with your solutions. Notice the differences between your code and the solutions code and describe them. Trivial differences like the names of variables are not that important.
+Review the posted solutions from the previous assignment: [`Birthday`](./solutions_week08/Birthday.py), [`Person`](./solutions_week08/Person.py). Compare the posted solutions with your solutions. Notice the differences between your code and the solutions code and describe them. Trivial differences like the names of variables are not that important.
 
 ### Frequent mistakes expected at this point
 
-* You wrote the superclass but forgot to rewrite the derived classes.
+* Your code has multiple return statements.
 
 * **Code has no comments** to demonstrate mastery of the program.
 
-* Extra points if your code has some tests that you wrote yourelf without being asked to (shows initiative/curiocity).
-
+* You do not show a test of `days_until`.
 
 ### Read more about:
 
+* Recursion: Chapter 9 from the textbook; [Chapter 6](https://learning.oreilly.com/library/view/data-structures/9780134855912/ch06.xhtml) from Canning, Broder, and Lafore.
 * [Type hints in Python](https://docs.python.org/3/library/typing.html); also useful [cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html#functions)
 * [f-strings in Python](https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings)
 * [lists in Python](https://docs.python.org/3/tutorial/datastructures.html). Also chapters 7.1 and 7.2 of the textbook.

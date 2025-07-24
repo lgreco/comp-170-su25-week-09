@@ -39,3 +39,27 @@ class Person:
     def __str__(self):
         """String representation for the object"""
         return f"[ {self.first_name} {self.last_name}]"
+
+
+    def say_birthday(self):
+        # ordinal indicators
+        st = [1,21,31] # these days are ordinally indicated "st"
+        nd = [2, 22] # these days are ordinally indicated "nd"
+        rd = [3, 23] # these days are ordinally indicated "rd"
+        # month names
+        months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+        ordinal_indicator = "th" # default ordinal indicator
+        if self.day in st: ordinal_indicator = "st"
+        if self.day in nd: ordinal_indicator = "nd"
+        if self.day in rd: ordinal_indicator = "rd"
+        # Break down birthday data for reability
+        day = self.birthday.get_day()
+        month = self.birthday.get_month()
+        return f"{day}{ordinal_indicator} of {months[month-1]}"
+
+    def __lt__(self, other):
+        # Simply delegate the comparison to the strings in question
+        return self.first_name < other.first_name
